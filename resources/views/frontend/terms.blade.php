@@ -37,11 +37,13 @@
                         </div>
                     </div> --}}
                     <div class="widget widget-categoery-box">
-                        <h3 class="widget-subtitle">Categories</h3>
+                        <h3 class="widget-subtitle">Our Services</h3>
                         <ul class="categoery-list">
-                            <li><a href="{{ route('properties') }}">Real Estate<span class="categoery-count">{{ $properties->count() }}</span></a></li>
-                            <li><a href="{{ route('cars') }}">Cars<span class="categoery-count">{{ $cars->count() }}</span></a></li>
-                            <li><a href="{{ route('products') }}">Special Deals<span class="categoery-count">{{ $deals->count() }}</span></a></li>
+                            @foreach ($services as $service)
+                                <li><a href="{{ route('service',['slug'=>$service->slug]) }}">{{ $service->name }}</a></li>
+                            @endforeach
+
+
 
                         </ul>
                     </div>

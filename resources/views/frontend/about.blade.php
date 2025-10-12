@@ -13,7 +13,7 @@
             <div class="row flex-row-reverse flex-lg-row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="about-img">
-                        <img src="{{ asset('storage/images/about') . $about->image1 }}" alt="about" width="746" height="587">
+                        <img src="{{ asset('storage/images/about') . $about->image2 }}" alt="about" width="746" height="587">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
@@ -22,7 +22,7 @@
                         <p>
                             {!! $about->founderDescription !!}
                         </p>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="about-layout1">
                                     <div class="item-img">
@@ -43,7 +43,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                
