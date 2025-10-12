@@ -196,7 +196,7 @@
                 </div>
                 <div class="row justify-content-center">
 
-                    @foreach ($services as $service )
+                    @foreach ($ourServices as $service )
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-box1 wow fadeInUp" data-wow-delay=".4s">
                             <div class="item-img">
@@ -462,13 +462,13 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-sm-8">
                         <div class="item-heading-left">
-                            <h2 class="section-title">Latest Blog & Posts</h2>
+                            <h2 class="section-title">Latest Updates</h2>
 
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-4">
                         <div class="heading-button">
-                            <a href="{{ route('blogs') }}" class="heading-btn">See All Blogs</a>
+                            <a href="{{ route('blogs') }}" class="heading-btn">See All Articles</a>
                         </div>
                     </div>
                 </div>
