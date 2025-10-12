@@ -237,7 +237,7 @@ public function service($slug)
 
     $productAdvert = Deal::where('subscription_type', 'Premium')->latest()->first();
 
-    $allAdverts = collect(); // Always define it to avoid "undefined variable" error
+    $allAdverts = collect(); 
 
     if ($productAdvert) {
         $allAdverts = Deal::where('subscription_type', 'Premium')
@@ -276,7 +276,7 @@ public function service($slug)
 
     $productAdvert = Deal::where('subscription_type', 'Premium')->latest()->first();
 
-    $allAdverts = collect(); // Always define it to avoid "undefined variable" error
+    $allAdverts = collect(); 
 
     if ($productAdvert) {
         $allAdverts = Deal::where('subscription_type', 'Premium')
