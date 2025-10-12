@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //View::share('services', Service::oldest()->get());
-        //View::share('services', Service::oldest()->get());
-        //Paginator::useBootstrap();
+        View::share('services', Service::oldest()->get());
+        Paginator::useBootstrap();
     }
 }
