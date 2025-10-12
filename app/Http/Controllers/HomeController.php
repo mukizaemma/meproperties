@@ -28,7 +28,7 @@ class HomeController extends Controller
         $carAdvert = Car::where('subscription_type', 'Premium')->latest()->first();
         $carAdvertImages = $carAdvert->carAdvert ?? collect();
         $properties = Property::latest()->paginate(3);
-        $products = Deal::latest()->paginate(3);
+        $ourServices = Service::latest()->paginate(3);
         $houseAdvert = Property::where('subscription_type', 'Premium')->latest()->first();
 
         $setting = Setting::first();
@@ -40,7 +40,7 @@ class HomeController extends Controller
             'carAdvertImages'=>$carAdvertImages,
             'properties'=>$properties,
             'houseAdvert'=>$houseAdvert,
-            'products'=>$products,
+            'ourServices'=>$ourServices,
             'setting'=>$setting,
             'slides'=>$slides,
             'about'=>$about,
@@ -123,16 +123,7 @@ class HomeController extends Controller
             'about'=>$about,
         ]);
     }
-    public function services(){
-        $services = Service::oldest()->paginate(3);
-        $about = About::first();
-        $setting = Setting::first();
-        return view('frontend.services',[
-            'services'=>$services,
-            'about'=>$about,
-            'setting'=>$setting,
-            ]);
-    }
+
 
 public function service($slug)
 {
