@@ -124,7 +124,7 @@ class HomeController extends Controller
         ]);
     }
     public function services(){
-        $services = Service::oldest()->get();
+        $services = Service::oldest()->paginate(3);
         $about = About::first();
         $setting = Setting::first();
         return view('frontend.services',[
