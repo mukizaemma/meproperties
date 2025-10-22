@@ -8394,7 +8394,7 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
 }
 .main-banner-box4 .item-categoery3 ul li {
   display: flex;
-  margin-right: 10px;
+  margin-right: 5px;
   align-items: center;
   font-size: 14px;
   font-weight: 600;
@@ -12561,15 +12561,15 @@ body.slidemenuon .sidebarBtn .bar:nth-child(4) {
 }
 .property-box3 .property-content .item-content .item-categoery3 ul {
   display: flex;
-  justify-content: space-between;
+  justify-content:flex-start;
   flex-wrap: wrap;
 }
 .property-box3 .property-content .item-content .item-categoery3 ul li {
   display: flex;
   position: relative;
-  align-items: center;
+  align-items: left;
   color: #ffffff;
-  margin-right: 20px;
+  margin-right: 5px;
   font-size: 14px;
 }
 @media only screen and (max-width: 1199px) {

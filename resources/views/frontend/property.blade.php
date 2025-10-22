@@ -1,6 +1,5 @@
 @extends('layouts.frontbase')
 
-
 @section('content')
 
       <!--=====================================-->
@@ -361,7 +360,7 @@
 
                   </div>
 
-                  @foreach ($allAdverts as $rs )
+                  @foreach ($propertyAdvert as $rs )
                   <div class="widget widget-post">
                     <div class="item-img">
                       <img src="{{ asset('storage/images/properties/' .$rs->image) }}" alt="widget" />

@@ -27,10 +27,15 @@ class HomeController extends Controller
         $cars = Car::latest()->paginate(3);
         $carAdvert = Car::where('subscription_type', 'Premium')->latest()->first();
         $carAdvertImages = $carAdvert->carAdvert ?? collect();
-        $properties = Property::latest()->paginate(3);
+        $properties = Property::latest()->where('status','New')->paginate(6);
         $ourServices = Service::latest()->paginate(3);
         $houseAdvert = Property::where('subscription_type', 'Premium')->latest()->first();
 
+        $latestProperty = Property::where('listing_type','Rent')->latest()->first();
+        $nextProperties = Property::where('listing_type','Rent')->latest()->skip(1)->take(3)->get();
+        $promotedProp = Property::where('status', 'Promo')->with('images')->first();
+
+        $blogs = Blog::where('status','Published')->latest()->take(3)->get();
         $setting = Setting::first();
         $slides = Slide::oldest()->get();
         $about = About::first();
@@ -39,8 +44,12 @@ class HomeController extends Controller
             'carAdvert'=>$carAdvert,
             'carAdvertImages'=>$carAdvertImages,
             'properties'=>$properties,
+            'latestProperty'=>$latestProperty,
+            'nextProperties'=>$nextProperties,
+            'promotedProp'=>$promotedProp,
             'houseAdvert'=>$houseAdvert,
             'ourServices'=>$ourServices,
+            'blogs'=>$blogs,
             'setting'=>$setting,
             'slides'=>$slides,
             'about'=>$about,
@@ -143,16 +152,36 @@ public function service($slug)
 }
 
 
-    public function propertySearch(){
-        $properties = Property::latest()->paginate(9);
-        $about = About::first();
-        $setting = Setting::first();
-        return view('frontend.propertySearch',[
-            'properties'=>$properties,
-            'about'=>$about,
-            'setting'=>$setting,
-            ]);
-    }
+public function propertySearch(Request $request)
+{
+    $query = Property::query();
+
+    $query->when($request->filled('status'), function ($q) use ($request) {
+        $q->where('listing_type', $request->status);
+    });
+
+    $query->when($request->filled('category') && $request->category !== 'Category', function ($q) use ($request) {
+        $q->where('category', $request->category);
+    });
+
+    $query->when($request->filled('city'), function ($q) use ($request) {
+        $q->where('city', $request->city);
+    });
+
+    $query->when($request->filled('location'), function ($q) use ($request) {
+        $q->where('location', 'like', '%' . $request->location . '%');
+    });
+
+    $properties = $query->latest()->paginate(9);
+
+    $about = About::first();
+    $setting = Setting::first();
+
+    $noResults = $properties->isEmpty();
+
+    return view('frontend.propertySearch', compact('properties', 'about', 'setting', 'noResults'));
+}
+
 
     public function properties(){
         $properties = Property::latest()->paginate(9);
@@ -167,22 +196,32 @@ public function service($slug)
     
     public function property($slug){
         $property = Property::where('slug',$slug)->firstOrFail();
-        $propertyAdvert = Property::where('subscription_type', 'Premium')->latest()->first();
-        $allAdverts = Property::where('subscription_type', 'Premium')->where('id','!=',$propertyAdvert->id)->latest()->get();
+        $promoted = Property::where('status', 'Promo')->latest()->first();
+        $latestProperties = Property::where('id','!=',$property->id)->latest()->take(3)->get();
         $images = $property->images ?? collect();
         $setting = Setting::first();
         $about = About::first();
         $property->increment('views');
-        return view('frontend.property',[
+        return view('frontend.propertySingle',[
             'property'=>$property,
-            'propertyAdvert'=>$propertyAdvert,
-            'allAdverts'=>$allAdverts,
+            'promoted'=>$promoted,
+            'latestProperties'=>$latestProperties,
             'images'=>$images,
             'setting'=>$setting,
             'about'=>$about,
         ]);
     }
 
+    public function searchResults(){
+        $properties = Property::latest()->paginate(9);
+        $about = About::first();
+        $setting = Setting::first();
+        return view('frontend.propertySearch',[
+            'properties'=>$properties,
+            'about'=>$about,
+            'setting'=>$setting,
+            ]);
+    }
     public function projects(){
         $properties = Property::latest()->paginate(9);
         $about = About::first();
@@ -251,43 +290,35 @@ public function service($slug)
     ]);
 }
     public function blogs(){
-        $products = Blog::latest()->paginate(9);
+        $blogs = Blog::latest()->paginate(9);
+        $properties = Property::latest()->paginate(9);
+    
         $about = About::first();
         $setting = Setting::first();
         return view('frontend.blogs',[
-            'products'=>$products,
+            'blogs'=>$blogs,
             'about'=>$about,
+            'properties'=>$properties,
             'setting'=>$setting,
             ]);
     }
 
         
     public function blog($slug){
-    $product = Blog::where('slug', $slug)->firstOrFail();
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+        $recentArticles = Blog::where('id','!=', $blog->id)->latest()->get();
 
-    $productAdvert = Deal::where('subscription_type', 'Premium')->latest()->first();
-
-    $allAdverts = collect(); 
-
-    if ($productAdvert) {
-        $allAdverts = Deal::where('subscription_type', 'Premium')
-            ->where('id', '!=', $productAdvert->id)
-            ->latest()
-            ->get();
-    }
-
-    $images = $product->images ?? collect();
-    $setting = Setting::first();
-    $about = About::first();
-    $product->increment('views');
-    return view('frontend.blog', [
-        'product' => $product,
-        'productAdvert' => $productAdvert,
-        'allAdverts' => $allAdverts,
-        'images' => $images,
-        'setting' => $setting,
-        'about' => $about,
-    ]);
+        $images = $blog->images ?? collect();
+        $setting = Setting::first();
+        $about = About::first();
+        $blog->increment('views');
+        return view('frontend.blog', [
+            'blog' => $blog,
+            'recentArticles' => $recentArticles,
+            'images' => $images,
+            'setting' => $setting,
+            'about' => $about,
+        ]);
 }
 
 

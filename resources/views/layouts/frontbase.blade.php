@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
+<base href="/public">
 <head>
     <meta charset="utf-8">
     <title>{{ $setting->company ?? '' }} </title>
@@ -295,9 +295,9 @@
                             </p>
                             <div class="item-social">
                                 <ul>
-                                    <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="{{ $setting->address }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="{{ $setting->linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="{{ $setting->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
                                     <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
                                 </ul>
                             </div>
@@ -310,11 +310,10 @@
                             </div>
                             <div class="item-link">
                                 <ul>
-                                    <li><a href="{{ route('home') }}">About Us </a></li>
-                                    <li><a href="{{ route('home') }}">Blogs & Articles </a></li>
-                                    <li><a href="{{ route('home') }}">Terms & Conditions</a></li>
-                                    <li><a href="{{ route('home') }}">Privacy Policy </a></li>
-                                    <li><a href="{{ route('home') }}">Contact Us </a></li>
+                                    <li><a href="{{ route('about') }}">About Us </a></li>
+                                    <li><a href="{{ route('blogs') }}">Blogs & Articles </a></li>
+                                    <li><a href="{{ route('terms') }}">Terms & Conditions</a></li>
+                                    <li><a href="{{ route('connect') }}">Contact Us </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -329,7 +328,10 @@
                                 <ul>
                                     <li class="item-map"><i class="fas fa-map-marker-alt"></i>{{ $setting->address }}</li>
                                     <li><a href="mailto:{{ $setting->email }}"><i class="fas fa-envelope"></i>{{ $setting->email }}</a></li>
-                                    <li><a href="tel:{{ $setting->phone }}"><i class="fas fa-phone-alt"></i>{{ $setting->phone }}</a></li>
+                                    <li>
+                                          <a href="https://wa.me/{{ $setting->phone }}" target="_blank" class="whatsapp-float">
+                                            <i class="fab fa-whatsapp"></i>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -357,6 +359,7 @@
                 </div>
             </div>
         </div>
+
     </footer>
         
         <!-- start back to top -->
@@ -413,6 +416,8 @@
 
     <!-- Main Js Start Here -->
     <script src="js/main.js"></script>
+
+
 </body>
 
 </html>

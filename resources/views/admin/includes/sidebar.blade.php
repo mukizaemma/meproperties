@@ -23,6 +23,7 @@
             <a href="{{ route('getProperties') }}" class="nav-item nav-link"> <i class="fas fa-building me-2"></i>Properties</a>
 
             <a href="{{ route('getPartners') }}" class="nav-item nav-link"><i class="fas fas fa-handshake me-2"></i>Partners</a> 
+            <a href="{{ route('getBlogs') }}" class="nav-item nav-link"><i class="fas fas fa-handshake me-2"></i>Articles</a> 
             <hr>
             {{-- <a href="{{ route('getMessages') }}" class="nav-item nav-link"> <i class="fas fa-briefcase me-2"></i>Requests</a> --}}
             <a href="{{ route('setting') }}" class="nav-item nav-link"> <i class="fas fa-hashtag me-2"></i>Settings</a>

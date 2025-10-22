@@ -22,7 +22,7 @@
                                     </p>
                                 </div>
 
-                                <div class="row gutters-10">
+                                {{-- <div class="row gutters-10">
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="single-blog-img">
                                             <img src="img/blog/blog26.jpg" alt="blog" width="363" height="240">
@@ -53,7 +53,7 @@
                                         <li>List of housing statutes</li>
                                         <li>List of human habitation forms</li>
                                     </ul>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>

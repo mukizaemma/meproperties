@@ -41,12 +41,11 @@ class BlogsController extends Controller
                 $post->short_body = $this->limitText(strip_tags($post->body), 100);
                 return $post;
             });
-    
-        $programs = Program::all();
+
         $setting = Setting::first();
     
         return view('admin.posts.blogs', [
-            'programs' => $programs,
+
             'latestBlogs' => $latestBlogs,
             'mostViewedBlogs' => $mostViewedBlogs,
             'setting' => $setting,
@@ -91,10 +90,8 @@ class BlogsController extends Controller
         $post = Blog::find($id);
         $comments = BlogComment::where('blog_id',$post->id)->latest()->get();
         $totalComments = $comments->count();
-        $program= Program::all();
         return view('admin.posts.blogView', [
             'post'=>$post,
-            'program'=>$program,
             'comments'=>$comments,
             'totalComments'=>$totalComments
         ]);
@@ -142,19 +139,6 @@ class BlogsController extends Controller
             $post->status='Published';
             $post->save();
 
-            $users = Subscriber::all();
-
-            foreach($users as $user){
-                $details = [
-                    'greeting' => 'Hello ' . $user->name . '!',
-                    'body' => 'M&E Properties has shared a new update: ' . $post->title,
-                    'text' => '' . $post->body,
-                    'actiontext' => 'View Story',
-                    'actionurl' => url('/Updates/' . $post->slug),
-                    'lastline' => 'Thank you!',
-                ];
-                Mail::to($user->email)->queue(new PublicationNotification($details));
-            }
         }
         return redirect()->route('getBlogs')->with('success', 'Story has been updated successfully');
     }

@@ -61,10 +61,11 @@
                                 <tr>
                                     {{-- <td><input class="form-check-input" type="checkbox"></td> --}}
                                     <td><a href="{{ route('editProperty',['id'=>$rs->id]) }}">{{ $rs->title }}</a> 
-                                    {{-- <br> <spam>{{$rs->images->count()}} Images   --}}
+                                     
                                     </td>
                                     <td>{{ $rs->listing_type }}
                                         <br> <spam>{{$rs->views}} Views 
+                                        <br> <spam style="color: teal; font-size: 12px;">{{$rs->images->count()}} Images 
                                     </td>
                                     <td><img src="{{ asset('storage/images/properties/' .$rs->image) }}" alt="" width="120px"></td>
                                     <td>{{ $rs->price }}/{{ $rs->currency }}</td>

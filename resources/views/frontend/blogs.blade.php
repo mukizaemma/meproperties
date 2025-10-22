@@ -8,114 +8,34 @@
         <div class="row gutters-40">
             <div class="col-lg-8">
                 <div class="row">
+                    @foreach($blogs as $blog)
                     <div class="col-lg-12">
                         <div class="blog-box1 blog-box2 wow fadeInUp" data-wow-delay=".4s">
                             <div class="item-img img-style-2">
-                                <a href="blog1.html"><img src="img/blog/blog23.jpg" alt="blog" width="739" height="399"></a>
+                                <a href="{{ route('blog', $blog->slug) }}"><img src="{{ asset('storage/images/blogs/' . $blog->image) }}" alt="blog" width="739" height="399"></a>
                             </div>
                             <div class="item-content content-style-2">
                                 <div class="entry-meta">
                                     <ul>
-                                        <li class="theme-cat"><a href="single-listing1.html"><img src="img/theme1.png" alt="theme">by radiustheme</a></li>
-                                        <li class="calendar-icon"><a href="single-listing1.html"><i class="far fa-calendar-alt"></i>February 28, 2020</a></li>
-                                        <li><a href="single-listing1.html">Apartment, Room</a></li>
-                                        <li><a href="single-listing1.html">5 mins</a></li>
+                                        {{-- <li class="theme-cat"><a href="{{ route('blog', $blog->slug) }}"><img src="{{ asset('storage/images/blogs/' . $blog->image) }}" alt="theme"></a></li> --}}
+                                        <li class="calendar-icon"><a href="{{ route('blog', $blog->slug) }}"><i class="far fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($blog->created_at)->format('M,d,Y') }}</a></li>
+                                        <li><a href="{{ route('blog', $blog->slug) }}">{{ ceil(str_word_count(strip_tags($blog->body)) / 200) }}</a></li>
                                     </ul>
                                 </div>
                                 <div class="heading-title title-style-2">
-                                    <h3><a href="single-listing1.html">How To Do Market Research For to Sell Faster</a></h3>
-                                    <p>Duis facilisis nibh qua sitamet interdtellsaesollicitudin tempor. Curabitur aliquis nibhquamamet inte
-                                        rdum. when an unknown printer took a galley of type and scrambled it to make a type specimen 
-                                        book has survived not only five centuries.
+                                    <h3><a href="{{ route('blog', $blog->slug) }}">{{ $blog->title }}</a></h3>
+                                    <p>
+                                        {!! Str::limit($blog->body, 250) !!}
                                     </p>
                                 </div>
                                 <div class="blog-button-style2">
-                                    <a href="single-listing1.html" class="item-btn">Read More<i class="fas fa-arrow-right"></i></a>
+                                    <a href="{{ route('blog', $blog->slug) }}" class="item-btn">Read More<i class="fas fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="blog-box1 blog-box2 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="item-img img-style-2">
-                                <a href="blog1.html"><img src="img/blog/blog24.jpg" alt="blog" width="739" height="399"></a>
-                            </div>
-                            <div class="item-content content-style-2">
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="theme-cat"><a href="single-listing1.html"><img src="img/theme1.png" alt="theme">by radiustheme</a></li>
-                                        <li class="calendar-icon"><a href="single-listing1.html"><i class="far fa-calendar-alt"></i>February 28, 2020</a></li>
-                                        <li><a href="single-listing1.html">Apartment, Room</a></li>
-                                        <li><a href="single-listing1.html">5 mins</a></li>
-                                    </ul>
-                                </div>
-                                <div class="heading-title title-style-2">
-                                    <h3><a href="single-listing1.html">Develop Relationships With Human Resource</a></h3>
-                                    <p>Duis facilisis nibh qua sitamet interdtellsaesollicitudin tempor. Curabitur aliquis nibhquamamet inte
-                                        rdum. when an unknown printer took a galley of type and scrambled it to make a type specimen 
-                                        book has survived not only five centuries.
-                                    </p>
-                                </div>
-                                <div class="blog-button-style2">
-                                    <a href="single-listing1.html" class="item-btn">Read More<i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="blog-box1 blog-box2 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="item-img img-style-2">
-                                <a href="blog1.html"><img src="img/blog/blog23.jpg" alt="blog" width="739" height="399"></a>
-                            </div>
-                            <div class="item-content content-style-2">
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="theme-cat"><a href="single-listing1.html"><img src="img/theme1.png" alt="theme">by radiustheme</a></li>
-                                        <li class="calendar-icon"><a href="single-listing1.html"><i class="far fa-calendar-alt"></i>February 28, 2020</a></li>
-                                        <li><a href="single-listing1.html">Apartment, Room</a></li>
-                                        <li><a href="single-listing1.html">5 mins</a></li>
-                                    </ul>
-                                </div>
-                                <div class="heading-title title-style-2">
-                                    <h3><a href="single-listing1.html">Connect With Corporate Recruiters</a></h3>
-                                    <p>Duis facilisis nibh qua sitamet interdtellsaesollicitudin tempor. Curabitur aliquis nibhquamamet inte
-                                        rdum. when an unknown printer took a galley of type and scrambled it to make a type specimen 
-                                        book has survived not only five centuries.
-                                    </p>
-                                </div>
-                                <div class="blog-button-style2">
-                                    <a href="single-listing1.html" class="item-btn">Read More<i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="blog-box1 blog-box2 wow fadeInUp" data-wow-delay=".4s">
-                            <div class="item-img img-style-2">
-                                <a href="blog1.html"><img src="img/blog/blog25.jpg" alt="blog" width="739" height="399"></a>
-                            </div>
-                            <div class="item-content content-style-2">
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li class="theme-cat"><a href="single-listing1.html"><img src="img/theme1.png" alt="theme">by radiustheme</a></li>
-                                        <li class="calendar-icon"><a href="single-listing1.html"><i class="far fa-calendar-alt"></i>February 28, 2020</a></li>
-                                        <li><a href="single-listing1.html">Apartment, Room</a></li>
-                                        <li><a href="single-listing1.html">5 mins</a></li>
-                                    </ul>
-                                </div>
-                                <div class="heading-title title-style-2">
-                                    <h3><a href="single-listing1.html">Unique Real Estate Marketing: Have A Tent Business Card</a></h3>
-                                    <p>Duis facilisis nibh qua sitamet interdtellsaesollicitudin tempor. Curabitur aliquis nibhquamamet inte
-                                        rdum. when an unknown printer took a galley of type and scrambled it to make a type specimen 
-                                        book has survived not only five centuries.
-                                    </p>
-                                </div>
-                                <div class="blog-button-style2">
-                                    <a href="single-listing1.html" class="item-btn">Read More<i class="fas fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
                 <div class="pagination-style-1">
                     <ul class="pagination">
@@ -139,45 +59,28 @@
                 </div>
             </div>
             <div class="col-lg-4 widget-break-lg sidebar-widget">
-                <div class="widget widget-search-box">
-                    <h3 class="widget-subtitle">Search</h3>
-                    <div class="widget-form-box">
-                        <input class="form-control" type="text" placeholder="What are you looking for?">
-                        <div class="item-search"><i class="fas fa-search"></i></div>
-                    </div>
-                </div>
+
                 <div class="widget widget-listing-box1">
                     <h3 class="widget-subtitle">Latest Listing</h3>
+
+                    @foreach ($properties as $property)
                     <div class="widget-listing">
                         <div class="item-img">
-                            <a href="single-listing1.html"><img src="img/blog/widget2.jpg" alt="widget" width="120" height="102"></a>
+                            <a href="{{ route('property', $property->slug) }}"><img src="{{ asset('storage/images/properties/' . $property->image) }}" alt="widget" width="120" height="102"></a>
                         </div>
                         <div class="item-content">
-                            <h5 class="item-title"><a href="single-listing1.html">House Highland Uganda</a></h5>
-                            <div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-                            <div class="item-price">$3,000<span>/mo</span></div>
+                            <h5 class="item-title"><a href="{{ route('property', $property->slug) }}">{{ $property->title }}</a></h5>
+                            <div class="location-area"><i class="flaticon-maps-and-flags">{{ $property->location }}</i></div>
+                            <div class="item-price">
+                                {{ $property->currency }} {{ number_format($property->price) }}
+                                @if($property->listing_type === 'Rent')
+                                    <span>/mo</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <div class="widget-listing">
-                        <div class="item-img">
-                            <a href="single-listing1.html"><img src="img/blog/widget3.jpg" alt="widget" width="120" height="102"></a>
-                        </div>
-                        <div class="item-content">
-                            <h5 class="item-title"><a href="single-listing1.html">House Highland Uganda</a></h5>
-                            <div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-                            <div class="item-price">$1,200<span>/mo</span></div>
-                        </div>
-                    </div>
-                    <div class="widget-listing no-brd">
-                        <div class="item-img">
-                            <a href="single-agent1.html"><img src="img/blog/widget4.jpg" alt="widget" width="120" height="102"></a>
-                        </div>
-                        <div class="item-content">
-                            <h5 class="item-title"><a href="single-listing1.html">House Highland Uganda</a></h5>
-                            <div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-                            <div class="item-price">$1,900<span>/mo</span></div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
 
             </div>
