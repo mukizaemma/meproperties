@@ -134,6 +134,20 @@ class HomeController extends Controller
     }
 
 
+public function services()
+{
+    $services = Service::oldest()->get();
+    $blogs = Blog::latest()->paginate(9);
+    $setting = Setting::first();
+    $about = About::first();
+    return view('frontend.services', [
+        'services' => $services,
+        'blogs' => $blogs,
+        'setting' => $setting,
+        'about' => $about,
+    ]);
+}
+
 public function service($slug)
 {
     $service = Service::where('slug', $slug)->firstOrFail();
@@ -150,7 +164,6 @@ public function service($slug)
         'about' => $about,
     ]);
 }
-
 
 public function propertySearch(Request $request)
 {
@@ -182,17 +195,16 @@ public function propertySearch(Request $request)
     return view('frontend.propertySearch', compact('properties', 'about', 'setting', 'noResults'));
 }
 
-
-    public function properties(){
-        $properties = Property::latest()->paginate(9);
-        $about = About::first();
-        $setting = Setting::first();
-        return view('frontend.properties',[
-            'properties'=>$properties,
-            'about'=>$about,
-            'setting'=>$setting,
-            ]);
-    }
+public function properties(){
+    $properties = Property::latest()->paginate(9);
+    $about = About::first();
+    $setting = Setting::first();
+    return view('frontend.properties',[
+        'properties'=>$properties,
+        'about'=>$about,
+        'setting'=>$setting,
+        ]);
+}
     
     public function property($slug){
         $property = Property::where('slug',$slug)->firstOrFail();
@@ -261,7 +273,7 @@ public function propertySearch(Request $request)
             ]);
     }
 
-        
+         
     public function product($slug){
     $product = Deal::where('slug', $slug)->firstOrFail();
 

@@ -43,36 +43,17 @@
                 </div>
                 <div class="widget widget-listing-box1">
                     <h3 class="widget-subtitle">Latest Listing</h3>
+                    @foreach ($blogs as $blog)
                     <div class="widget-listing">
                         <div class="item-img">
-                            <a href="single-listing1.html"><img src="img/blog/widget2.jpg" alt="widget" width="120" height="102"></a>
+                            <a href="{{ route('blog', $blog->slug) }}"><img src="{{ asset('storage/images/blogs/' . $blog->image) }}" alt="widget" width="120" height="102"></a>
                         </div>
                         <div class="item-content">
-                            <h5 class="item-title"><a href="single-listing1.html">House Highland Uganda</a></h5>
-                            <div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-                            <div class="item-price">$3,000<span>/mo</span></div>
+                            <h5 class="item-title"><a href="{{ route('blog', $blog->slug) }}">{{ $blog->title }}</a></h5>
+                            <div class="item-price">{{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}</div>
                         </div>
                     </div>
-                    <div class="widget-listing">
-                        <div class="item-img">
-                            <a href="single-listing1.html"><img src="img/blog/widget3.jpg" alt="widget" width="120" height="102"></a>
-                        </div>
-                        <div class="item-content">
-                            <h5 class="item-title"><a href="single-listing1.html">House Highland Uganda</a></h5>
-                            <div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-                            <div class="item-price">$1,200<span>/mo</span></div>
-                        </div>
-                    </div>
-                    <div class="widget-listing no-brd">
-                        <div class="item-img">
-                            <a href="single-agent1.html"><img src="img/blog/widget4.jpg" alt="widget" width="120" height="102"></a>
-                        </div>
-                        <div class="item-content">
-                            <h5 class="item-title"><a href="single-listing1.html">House Highland Uganda</a></h5>
-                            <div class="location-area"><i class="flaticon-maps-and-flags"></i>California</div>
-                            <div class="item-price">$1,900<span>/mo</span></div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>

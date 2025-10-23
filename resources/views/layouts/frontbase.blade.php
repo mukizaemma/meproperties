@@ -220,17 +220,17 @@
             class="rt-header-menu mean-container position-relative"
             id="meanmenu">
             <div class="mean-bar">
-                <a href="index.html">
-                    <img src='img/logo_light2.svg' alt='logo' class='img-fluid'/>
+                <a href="{{route('home')}}">
+                    <img src='{{ asset('storage/images') . $setting->logo }}' alt='logo' class='img-fluid' width="90px"/>
                 </a>
                 <div class="mean-bar--right">
                     <div class="actions search">
-                        <a href="#template-search" class="item-icon" title="Search">
+                        {{-- <a href="#template-search" class="item-icon" title="Search">
                             <i class="fas fa-search"></i>
-                        </a>
+                        </a> --}}
                     </div>
                     <div class="actions user">
-                        <a href="account.html"><i class="flaticon-user"></i></a>
+                        {{-- <a href="{{route('home')}}"><i class="flaticon-user"></i></a> --}}
                     </div>
                     <span class="sidebarBtn">
                         <span class="bar"></span>
