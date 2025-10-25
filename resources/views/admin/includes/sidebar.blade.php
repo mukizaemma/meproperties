@@ -19,6 +19,7 @@
             <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i class="fas fa-grip-horizontal me-2"></i>Dashboard</a>
              
             <a href="{{ route('aboutPage') }}" class="nav-item nav-link"> <i class="fas fa-home me-2"></i>About Us</a>
+            <a href="{{ route('slides') }}" class="nav-item nav-link"> <i class="fas fa-images me-2"></i>Slides</a>
             <a href="{{ route('getServices') }}" class="nav-item nav-link"> <i class="fa fa-users me-2"></i>Services</a>
             <a href="{{ route('getProperties') }}" class="nav-item nav-link"> <i class="fas fa-building me-2"></i>Properties</a>
 

@@ -69,7 +69,7 @@
                                                 @foreach ([
                                                     ['label' => 'About us page Image', 'name' => 'image2', 'src' => $data->image2],
                                                     // ['label' => 'Top Image', 'name' => 'image3', 'src' => $data->image3],
-                                                    // ['label' => 'Bottom Image', 'name' => 'image4', 'src' => $data->image4],
+                                                    // ['label' => 'Bottom Video', 'name' => 'image4', 'src' => $data->image4],
                                                     // ['label' => 'Bottom Image', 'name' => 'storyImage', 'src' => $data->storyImage]
                                                 ] as $img)
                                                     <div class="col-lg-4 col-sm-12 mb-4 text-center">

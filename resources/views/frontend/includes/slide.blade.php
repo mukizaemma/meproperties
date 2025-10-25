@@ -4,9 +4,38 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="main-banner-box2 wow slideInUp" data-wow-delay=".3s">
-                            <div class="item-img">
-                                <img src="{{ asset('storage/images/about') . $about->image1 }}" alt="banner" width="751" height="451">
+                            <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+                                <div class="carousel-inner rounded-4 shadow-sm">
+                                    @foreach ($slides as $index => $slide)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <img src="{{ asset('storage/images/slides/' . $slide->image) }}" 
+                                                class="d-block w-100 carousel-image" 
+                                                alt="slide-{{ $index }}">
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- Dynamic navigation controls -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </button>
+
+                                <!-- Dynamic indicators -->
+                                <div class="carousel-indicators">
+                                    @foreach ($slides as $index => $slide)
+                                        <button type="button" 
+                                                data-bs-target="#aboutCarousel" 
+                                                data-bs-slide-to="{{ $index }}" 
+                                                class="{{ $index == 0 ? 'active' : '' }}" 
+                                                aria-current="{{ $index == 0 ? 'true' : 'false' }}">
+                                        </button>
+                                    @endforeach
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -92,3 +121,37 @@
                 </div>
             </div>
         </section>
+
+
+        <style>
+            #aboutCarousel img {
+                object-fit: cover;
+                border-radius: 16px;
+                height: 451px;
+            }
+
+            .carousel-inner {
+                overflow: hidden;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                filter: invert(1);
+            }
+
+            .carousel-image {
+                height: 451px; /* your desired fixed height */
+                object-fit: cover;
+                border-radius: 16px;
+            }
+
+            .carousel-inner {
+                overflow: hidden;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                filter: invert(1);
+            }
+
+        </style>

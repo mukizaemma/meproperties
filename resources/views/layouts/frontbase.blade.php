@@ -363,10 +363,23 @@
     </footer>
         
         <!-- start back to top -->
-        <a href="javascript:void(0)" id="back-to-top">
+        {{-- <a href="javascript:void(0)" id="back-to-top">
             <i class="fas fa-angle-double-up"></i>
-        </a>
+        </a> --}}
         <!-- End back to top -->
+
+        <!-- Video Popup -->
+        <div id="video-popup" class="video-popup shadow-lg">
+            <div class="video-header">
+                {{-- <span>🎥 Watch Our Story</span> --}}
+                <button id="close-video" class="btn-close text-white" style="color: #fff"></button>
+            </div>
+            <video id="promoVideo" width="300" height="170" playsinline autoplay muted controls>
+                <source src="{{ asset('videos/promo.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
 
     </div>
     <div id="template-search" class="template-search">
@@ -417,6 +430,76 @@
     <!-- Main Js Start Here -->
     <script src="js/main.js"></script>
 
+
+    <style>
+        .video-popup {
+    position: fixed;
+    bottom: 10px; /* above your "back to top" button */
+    right: 20px;
+    width: auto;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 9999;
+    display: none;
+    animation: fadeInUp 0.8s ease;
+}
+
+.video-header {
+    background: #0d6efd;
+    color: #fff !important;
+    padding: 4px 10px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-video {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 576px) {
+    .video-popup {
+        width: 100%;
+        right: 5%;
+        bottom: 10px;
+    }
+}
+
+    </style>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const popup = document.getElementById("video-popup");
+    const video = document.getElementById("promoVideo");
+    const closeBtn = document.getElementById("close-video");
+
+    // Show popup automatically
+    popup.style.display = "block";
+    video.play().catch(() => {}); // in case autoplay is blocked
+
+    // Close popup
+    closeBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+        video.pause();
+    });
+});
+</script>
 
 </body>
 
