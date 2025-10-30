@@ -228,7 +228,7 @@
                                                     <div class="item-content">
                                                         <div class="verified-area">
                                                             <h3 class="item-title">
-                                                                <a href="{{ route('property', ['slug'=>$property->slug]) }}">{{ $property->location }}</a>
+                                                                <a href="{{ route('property', ['slug'=>$property->slug]) }}">{{ $property->title }}</a>
                                                             </h3>
                                                         </div>
                                                         <div class="location-area">

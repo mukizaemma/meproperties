@@ -423,22 +423,22 @@
                   <div class="item-img">
                       <a href="{{ route('property', ['slug' => $latest->slug]) }}"><img src="{{ asset('storage/images/properties/' . $latest->image) }}" alt="blog" width="510" height="340"></a>
                       <div class="item-category-box1">
-                          <div class="item-category">For {{ $promotedProp->listing_type ?? 'Sell' }}</div>
+                          <div class="item-category">For {{ $latest->listing_type ?? 'Sell' }}</div>
                       </div>
                       <div class="rent-price">
                           <div class="item-price">
-                            {{ $promoted->currency }} {{ number_format($promoted->price) }}
-                            @if($promoted->listing_type === 'Rent')
+                            {{ $latest->currency }} {{ number_format($latest->price) }}
+                            @if($latest->listing_type === 'Rent')
                                 <span>/mo</span>
                             @endif
                           </div>
                       </div>
 
                   </div>
-                  <div class="item-category10"><a href="{{ route('property', ['slug' => $latest->slug]) }}">Appartment</a></div>
+                  <div class="item-category10"><a href="{{ route('property', ['slug' => $latest->slug]) }}">{{ $latest->listing_type ?? 'Sell' }}</a></div>
                   <div class="item-content">
                       <div class="verified-area">
-                          <h3 class="item-title"><a href="{{ route('property', ['slug' => $latest->slug]) }}">Family House For Sell</a></h3>
+                          <h3 class="item-title"><a href="{{ route('property', ['slug' => $latest->slug]) }}">{{ $latest->title }}</a></h3>
                       </div>
                       <div class="location-area"><i class="flaticon-maps-and-flags"></i>{{ $latest->location }}</div>
                       <div class="item-categoery3">

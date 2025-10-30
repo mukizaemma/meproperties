@@ -40,7 +40,7 @@
                                             </div>
 
                                         </div>
-                                        <h3 class="item-title"><a href="{{ route('property',['slug'=>$property->slug]) }}"> {{ $property->location }} </a></h3>
+                                        <h3 class="item-title"><a href="{{ route('property',['slug'=>$property->slug]) }}"> {{ $property->title }} </a></h3>
                                         <div class="item-categoery3">
                                             <ul>
                                                 
@@ -141,7 +141,7 @@
                     <div class="item-content">
                         <h3 class="item-title">
                             <a href="{{ route('property', ['slug' => $latestProperty->slug]) }}">
-                                {{ $latestProperty->title ?? $latestProperty->location }}
+                                {{ $latestProperty->title ?? $latestProperty->title }}
                             </a>
                         </h3>
                         <div class="location-area">
@@ -181,7 +181,7 @@
                                     <div class="item-content">
                                         <h3 class="item-title">
                                             <a href="{{ route('property', ['slug' => $property->slug]) }}">
-                                                {{ $property->title ?? $property->location }}
+                                                {{ $property->title ?? $property->title }}
                                             </a>
                                         </h3>
                                         <div class="location-area">
