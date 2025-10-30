@@ -374,7 +374,7 @@
                           <i class="flaticon-maps-and-flags"></i>{{ $promoted->location }}
                         </div>
                         <div class="item-price">
-                          {{ $promoted->currency }} {{ number_format($promoted->price) }}
+                          {{ $promoted->currency ?? '' }} {{ number_format($promoted->price ?? '') }}
                           @if($promoted->listing_type === 'Rent')
                               <span>/mo</span>
                           @endif
