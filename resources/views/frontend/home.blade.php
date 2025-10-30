@@ -18,41 +18,43 @@
                     <h2 class="section-title">Latest Properties</h2>
                 </div>
                 <div class="row">
-                    @foreach ($properties as $property)
+                    @if(isset($properties) && $properties->count())
+                        @foreach ($properties as $property)
                         
-                    <div class="col-lg-4 col-md-6">
-                        <div class="property-box3 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="item-img">
-                                <a href="{{ route('property',['slug'=>$property->slug]) }}"><img src="{{ asset('storage/images/properties/' .$property->image) }}" alt="property" style="height: 259px; object-fit: contain;"></a>
-                                <div class="item-category-box1">
-                                        <div class="item-category">{{ $property->listing_type ?? 'Rent' }}</div>
-                                </div>
-                            </div>
-                            <div class="property-content">
-                                <div class="item-content">
-                                    <div class="veryfy-area">
-                                        <div class="item-price">
-                                            {{ $property->currency }} {{ number_format($property->price) }}
-                                            @if($property->listing_type === 'Rent')
-                                                <span>/mo</span>
-                                            @endif
-                                        </div>
-
+                        <div class="col-lg-4 col-md-6">
+                            <div class="property-box3 wow fadeInUp" data-wow-delay=".2s">
+                                <div class="item-img">
+                                    <a href="{{ route('property',['slug'=>$property->slug]) }}"><img src="{{ asset('storage/images/properties/' .$property->image) }}" alt="property" style="height: 259px; object-fit: contain;"></a>
+                                    <div class="item-category-box1">
+                                            <div class="item-category">{{ $property->listing_type ?? 'Rent' }}</div>
                                     </div>
-                                    <h3 class="item-title"><a href="{{ route('property',['slug'=>$property->slug]) }}"> {{ $property->location }} </a></h3>
-                                    <div class="item-categoery3">
-                                        <ul>
-                                            
-                                            <li><i class="flaticon-bed"></i><span> {{ $property->bedrooms }}</span></li>
-                                            <li><i class="flaticon-shower"></i><span> {{ $property->bathrooms }}</span></li>
-                                            <li><i class="flaticon fa fa-car mt-2"></i><span> {{ $property->parking }}</span></li>
-                                        </ul>
+                                </div>
+                                <div class="property-content">
+                                    <div class="item-content">
+                                        <div class="veryfy-area">
+                                            <div class="item-price">
+                                                {{ $property->currency }} {{ number_format($property->price) }}
+                                                @if($property->listing_type === 'Rent')
+                                                    <span>/mo</span>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                        <h3 class="item-title"><a href="{{ route('property',['slug'=>$property->slug]) }}"> {{ $property->location }} </a></h3>
+                                        <div class="item-categoery3">
+                                            <ul>
+                                                
+                                                <li><i class="flaticon-bed"></i><span> {{ $property->bedrooms }}</span></li>
+                                                <li><i class="flaticon-shower"></i><span> {{ $property->bathrooms }}</span></li>
+                                                <li><i class="flaticon fa fa-car mt-2"></i><span> {{ $property->parking }}</span></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
 
                 </div>
                 <div class="property-button">

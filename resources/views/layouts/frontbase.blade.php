@@ -86,9 +86,6 @@
                                       <li>
                                           <a href="{{ route('connect') }}">Our Contacts</a>
                                       </li>
-                                      <li>
-                                          <a href="{{ route('terms') }}">our Terms and Conditions</a>
-                                      </li>
                                   </ul>
                               </li>
 
@@ -142,7 +139,7 @@
                                                         </li>
                                                         <li>
                                                             <a href="{{ route('propertySearch') }}">
-                                                                <i class="fas fa-city"></i> Office
+                                                                <i class="fas fa-city"></i> Apartment
                                                             </a>
                                                         </li>
                                                         <li>
@@ -160,29 +157,7 @@
 
                                                 <!-- Sell -->
                                                 <div class="col-4">
-                                                    <div class="menu-ctg-title">Sell</div>
-                                                    <ul class="sub-menu">
-                                                        <li>
-                                                            <a href="{{ route('propertySearch') }}">
-                                                                <i class="fas fa-home"></i> House
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('propertySearch') }}">
-                                                                <i class="fas fa-building"></i> Apartment
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('propertySearch') }}">
-                                                                <i class="fas fa-warehouse"></i> Commercial Building
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ route('propertySearch') }}">
-                                                                <i class="fas fa-map-marked-alt"></i> Land
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+
                                                 </div>
 
                                             </div>

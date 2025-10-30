@@ -191,7 +191,8 @@
                                                 <p class="alert alert-warning">No properties found matching your search criteria.</p>
                                             </div>
                                         @else
-                                            @foreach($properties as $property)
+                                        @if(isset($properties) && $properties->count())
+                                            @foreach ($properties as $property)
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="property-box2 wow animated fadeInUp" data-wow-delay=".3s">
                                                     <div class="item-img">
@@ -244,6 +245,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
+                                        @endif
                                         @endif
                                     </div>
 
