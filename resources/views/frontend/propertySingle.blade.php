@@ -353,31 +353,38 @@
                   <div class="widget widget-listing-box1">
                     <h3 class="widget-subtitle">Today's Recommendation</h3>
                     <div class="widget-content">
-                    <a href="{{ route('property', ['slug' => $promoted->slug]) }}"
-                        ><img
-                          src="{{ asset('storage/images/properties/' . $promoted->image) }}"
-                          alt="widget"
-                          width="540"
-                          height="360"
-                      /></a>
+                      @if($promoted)
+                      <a href="{{ route('property', ['slug' => $promoted->slug]) }}"
+                          ><img
+                            src="{{ asset('storage/images/properties/' . $promoted->image) }}"
+                            alt="widget"
+                            width="540"
+                            height="360"
+                        /></a>
 
-                      <div class="item-category10">
-                        <a href="{{ route('property', ['slug' => $promoted->slug]) }}">{{ $promoted->listing_type }}</a>
-                      </div>
-                      <h4 class="item-title">
-                        <a href="{{ route('property', ['slug' => $promoted->slug]) }}"
-                          >{{ $promoted->title }}</a
-                        >
-                      </h4>
-                      <div class="location-area">
-                        <i class="flaticon-maps-and-flags"></i>{{ $promoted->location }}
-                      </div>
-                      <div class="item-price">
-                        {{ $promoted->currency }} {{ number_format($promoted->price) }}
-                        @if($promoted->listing_type === 'Rent')
-                            <span>/mo</span>
+                        <div class="item-category10">
+                          <a href="{{ route('property', ['slug' => $promoted->slug]) }}">{{ $promoted->listing_type }}</a>
+                        </div>
+                        <h4 class="item-title">
+                          <a href="{{ route('property', ['slug' => $promoted->slug]) }}"
+                            >{{ $promoted->title }}</a
+                          >
+                        </h4>
+                        <div class="location-area">
+                          <i class="flaticon-maps-and-flags"></i>{{ $promoted->location }}
+                        </div>
+                        <div class="item-price">
+                          {{ $promoted->currency }} {{ number_format($promoted->price) }}
+                          @if($promoted->listing_type === 'Rent')
+                              <span>/mo</span>
+                          @endif
+                        </div>
+                        @else
+                            <div class="no-promo">
+                                <p>Coming Soon.</p>
+                            </div>
                         @endif
-                      </div>
+
                     </div>
 
                   </div>
