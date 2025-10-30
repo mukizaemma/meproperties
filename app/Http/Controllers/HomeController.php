@@ -207,7 +207,11 @@ public function properties(){
 }
     
     public function property($slug){
-        $property = Property::where('slug',$slug)->firstOrFail();
+        $property = Property::where('slug', $slug)->first();
+
+        if (!$property) {
+            abort(404, 'Property not found');
+        }
         $promoted = Property::where('status', 'Promo')->latest()->first();
         $latestProperties = Property::where('id','!=',$property->id)->latest()->take(3)->get();
         $images = $property->images ?? collect();
