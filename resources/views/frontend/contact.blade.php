@@ -14,32 +14,29 @@
                 <div class="col-lg-12">
                     <div class="contact-box1">
                         <div class="contact-img">
-                            <img src="img/blog/contact1.jpg" alt="contact" height="502" width="607">
+                            <img src="{{ asset('storage/images') . $setting->donate }}" alt="contact" height="502" width="607">
                         </div>
                         <div class="contact-content">
                             <h3 class="contact-title">Office Information</h3>
                             <div class="contact-list">
                                 <ul>
-                                    <li>Homlisti Real Estate Agency</li>
-                                    <li>(United Estate Of America) Co., Ltd.</li>
-                                    <li>Bridge 8, Room 9201,</li>
-                                    <li>#25 Jocker Goru Zhong Road,</li>
-                                    <li>NYPD 200025 USA</li>
+                                    <li>{{ $setting->company }}</li>
+                                    <li>{{ $setting->address }}</li>
+                                    <li>Uganda</li>
                                 </ul>
                             </div>
                             <div class="phone-box">
-                                <div class="item-lebel">Emergency Call :</div>
-                                <div class="phone-number">+86 21 6137 9292</div>
+                                <div class="item-lebel">Call us for direct support :</div>
+                                <div class="phone-number"><a href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a> </div>
                                 <div class="item-icon"><i class="fas fa-phone-alt"></i></div>
                             </div>
                             <div class="social-box">
                                 <div class="item-lebel">Social Share :</div>
                                 <ul class="item-social">
-                                    <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://twitter.com/"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="https://vimeo.com/"><i class="fab fa-vimeo-v"></i></a></li>
-                                    <li><a href="https://www.pinterest.com/"><i class="fab fa-pinterest-p"></i></a></li>
-                                    <li><a href="https://web.whatsapp.com/"><i class="fab fa-whatsapp"></i></a></li>
+                                    <li><a href="{{ $setting->address }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="{{ $setting->linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="{{ $setting->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
                                 </ul>
                                 <div class="item-icon"><i class="fas fa-share-alt"></i></div>
                             </div>
@@ -52,7 +49,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact-box2">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d116878.45300534296!2d90.4195470442074!3d23.731268144494663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1635221509729!5m2!1sen!2sbd" width="600" height="550" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7548142240153!2d32.62913687496458!3d0.32327299967355405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177db9c873fffe8f%3A0x4e080453c0c41229!2sEnkombe%20Villas!5e0!3m2!1sen!2srw!4v1762324028028!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         <div class="contact-content">
                             <h3 class="contact-title">Quick Contact</h3>
                             <p>Borem ipsum dolor sit amet conse ctetur adipisicing elit sed do eiusmod 

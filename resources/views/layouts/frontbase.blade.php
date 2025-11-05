@@ -66,7 +66,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-10 col-lg-10 d-flex justify-content-center position-static">
+                        <div class="col-xl-8 col-lg-8 d-flex justify-content-center position-static">
                             <nav id="dropdown" class="template-main-menu template-main-menu-2">
                             <ul>
                                 <li>
@@ -81,11 +81,14 @@
                                           <a href="{{ route('about') }}">Company Profile</a>
                                       </li>
                                       <li>
-                                          <a href="#">Our Team</a>
+                                          <a href="{{ route('about') }}">Our Team</a>
                                       </li>
                                       <li>
                                           <a href="{{ route('connect') }}">Our Contacts</a>
                                       </li>
+                                      {{-- <li>
+                                          <a href="{{ route('blogs') }}">Our updates/Articles</a>
+                                      </li> --}}
                                   </ul>
                               </li>
 
@@ -165,17 +168,6 @@
                                     </div>
                                 </li>
 
-                              
-                                <li>
-                                    <a href="{{ route('projects') }}">Projects</a>
-                                    <ul class="dropdown-menu-col-1">
-                                        <li>
-                                            <a href="{{ route('projects') }}">Construction Projects</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-
 
                                 <li>
                                     <a href="{{ route('blogs') }}">Articles</a>
@@ -187,6 +179,39 @@
                             </ul>
                             </nav>
                         </div>
+                        <div class="col-xl-2 col-lg-2 d-flex justify-content-end">
+                            <div style="display:flex; justify-content:center; align-items:center;">
+                                <a href="https://wa.me/250788123456?text=Hello%20I%20am%20interested%20in%20your%20properties"
+                                    target="_blank"
+                                    style="
+                                    display:flex;
+                                    align-items:center;
+                                    background-color:#25D366;
+                                    color:white;
+                                    border-radius:50px;
+                                    padding:12px 14px;
+                                    text-decoration:none;
+                                    font-weight:600;
+                                    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+                                    transition:all 0.4s ease;
+                                    overflow:hidden;
+                                    width:50px;
+                                    white-space:nowrap;
+                                    "
+                                    onmouseover="this.style.width='180px'; this.style.borderRadius='50px'; this.querySelector('.cta-text').style.opacity='1';"
+                                    onmouseout="this.style.width='50px'; this.querySelector('.cta-text').style.opacity='0';">
+
+                                    <i class="fab fa-whatsapp" style="font-size:22px; margin-right:8px; transition:transform 0.3s;"></i>
+                                    <span class="cta-text" style="
+                                        opacity:0;
+                                        transition:opacity 0.4s ease;
+                                        font-size:15px;
+                                    ">{{ $setting->phone }}</span>
+                                </a>
+                            </div>
+
+
+                    </div>
                     </div>
                 </div>
             </div>
@@ -228,14 +253,6 @@
                                 <ul class="main-menu__dropdown sub-menu">
                                     <li><a href="{{ route('home') }}">Rent</a></li>
                                     <li><a href="{{ route('home') }}">Buy</a></li>
-                                    <li><a href="{{ route('home') }}">Sell</a></li>
-                                </ul>
-                            </li>
-                            <li class="list menu-item-parent menu-item-has-children">
-                                <a class="animation" href="index.html">Projects</a>
-                                <ul class="main-menu__dropdown sub-menu">
-                                    <li><a href="{{ route('home') }}">Project 1</a></li>
-                                    <li><a href="{{ route('home') }}">Project 2</a></li>
                                 </ul>
                             </li>
                             <li class="list menu-item-parent">
@@ -303,10 +320,7 @@
                                 <ul>
                                     <li class="item-map"><i class="fas fa-map-marker-alt"></i>{{ $setting->address }}</li>
                                     <li><a href="mailto:{{ $setting->email }}"><i class="fas fa-envelope"></i>{{ $setting->email }}</a></li>
-                                    <li>
-                                          <a href="https://wa.me/{{ $setting->phone }}" target="_blank" class="whatsapp-float">
-                                            <i class="fab fa-whatsapp"></i>
-                                    </li>
+                                    <li><a href="tel:{{ $setting->phone }}"><i class="fas fa-phone"></i>{{ $setting->phone }}</a></li>
                                 </ul>
                             </div>
                         </div>

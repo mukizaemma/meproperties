@@ -16,9 +16,9 @@
                             </div>
                             <div class="item-content">
                                 <div class="heading-title title-style-2">
-                                    <h3><a href="single-listing1.html">{{ $service->name }}</a></h3>
+                                    <h3><a href="{{ route('service',['slug'=>$service->slug]) }}">{{ $service->name }}</a></h3>
                                     <p>
-                                        {!! !$service->description !!}
+                                        {!! $service->description ?? '' !!}
                                     </p>
                                 </div>
 

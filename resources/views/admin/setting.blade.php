@@ -93,12 +93,12 @@
                                 
                                     <!-- Footer Logo -->
                                     <div class="col-lg-6 text-center" style="padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-                                        <label for="currentFooter" class="form-label" style="font-weight: bold; font-size: 16px;">Footer Logo</label>
+                                        <label for="currentFooter" class="form-label" style="font-weight: bold; font-size: 16px;">Image on Contact Us Page</label>
                                         <div style="margin: 10px 0;">
                                             <img src="{{ asset('storage/images') . $data->donate }}" alt="Logo" style="width: 150px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
                                         </div>
                                 
-                                        <label for="donate" class="form-label" style="margin-top: 10px;">Change the Footer Logo</label>
+                                        <label for="donate" class="form-label" style="margin-top: 10px;">Change the Contact Us Image</label>
                                         <input type="file" class="form-control mt-2" name="donate">
                                     </div>
                                 </div>

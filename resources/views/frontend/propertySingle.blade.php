@@ -247,13 +247,38 @@
                       <p>
                         {!! $property->description !!}
                       </p>
+                      <div style="display: flex; align-items: center; justify-content: space-between; background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 15px 20px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                          
+                          <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+                              <div style="background-color: #02246B; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                                  <i class="fas fa-phone-alt"></i>
+                              </div>
+                              <div>
+                                  <div style="font-size: 12px; color: #6c757d;">Call the Agent</div>
+                                  <a href="tel:{{ $property->contact }}" style="font-size: 16px; color: #02246B; font-weight: bold; text-decoration: none;">{{ $property->contact }}</a>
+                              </div>
+                          </div>
+
+                          <div style="width: 1px; background: #ccc; height: 35px; margin: 0 15px;"></div>
+
+                          <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+                              <div style="background-color: #007bff; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                                  <i class="fas fa-envelope"></i>
+                              </div>
+                              <div>
+                                  <div style="font-size: 12px; color: #6c757d;">Email the Agent</div>
+                                  <a href="mailto:{{ $property->email }}" style="font-size: 16px; color: #007bff; font-weight: bold; text-decoration: none;">{{ $property->email }}</a>
+                              </div>
+                          </div>
+                      </div>
+
                     </div>
 
                   </div>
                 </div>
                 <div class="col-lg-4 widget-break-lg sidebar-widget">
                   <div class="widget widget-contact-box">
-                    <h3 class="widget-subtitle">Contact Agent</h3>
+                    <h3 class="widget-subtitle">Let’s help you find your dream home</h3>
                     <div class="media d-flex">
                       <div class="flex-shrink-0">
                         <div class="item-logo">
@@ -268,9 +293,9 @@
                       <div class="media-body flex-grow-1 ms-3">
                         <h4 class="item-title">{{ $setting->company }}</h4>
                         <div class="item-phn">
-                          {{ $setting->phone }}
+                          <a href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a>
                         </div>
-                        <div class="item-mail">{{ $setting->email }}</div>
+                        <div class="item-mail"><a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a> </div>
                         {{-- <div class="item-rating">
                           <ul>
                             <li><i class="fas fa-star"></i></li>
@@ -332,7 +357,7 @@
                             name="comment"
                             id="message"
                             class="form-text"
-                            placeholder="Message"
+                            placeholder="What are you looking for?"
                             cols="30"
                             rows="4"
                             data-error="Message Name is required"

@@ -185,14 +185,14 @@ public function propertySearch(Request $request)
         $q->where('location', 'like', '%' . $request->location . '%');
     });
 
-    $properties = $query->latest()->paginate(9);
-
+    $properties = $query->latest()->paginate(15);
     $about = About::first();
     $setting = Setting::first();
 
     $noResults = $properties->isEmpty();
 
-    return view('frontend.propertySearch', compact('properties', 'about', 'setting', 'noResults'));
+    return view('frontend.propertySearch', compact('properties', 'about', 
+    'setting', 'noResults'));
 }
 
 public function properties(){
