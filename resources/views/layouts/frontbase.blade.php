@@ -230,7 +230,7 @@
         <div
             class="rt-header-menu mean-container position-relative"
             id="meanmenu">
-            <div class="mean-bar">
+            <div class="mean-bar" style="background-color: teal">
                 <a href="{{route('home')}}">
                     <img src='{{ asset('storage/images') . $setting->logo }}' alt='logo' class='img-fluid' width="90px"/>
                 </a>
@@ -260,17 +260,28 @@
                             </li>
 
                             <li class="list menu-item-parent menu-item-has-children">
+                                <a class="animation" href="index.html">Services</a>
+                                <ul class="main-menu__dropdown sub-menu">
+                                    @foreach($services as $service)
+                                    <li>
+                                        <a href="{{ route('service',['slug'=>$service->slug]) }}">{{ $service->name }}</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li class="list menu-item-parent menu-item-has-children">
                                 <a class="animation" href="index.html">Properties</a>
                                 <ul class="main-menu__dropdown sub-menu">
-                                    <li><a href="{{ route('home') }}">Rent</a></li>
-                                    <li><a href="{{ route('home') }}">Buy</a></li>
+                                    <li><a href="{{ route('propertySearch') }}">Rent</a></li>
+                                    <li><a href="{{ route('propertySearch') }}">Buy</a></li>
                                 </ul>
                             </li>
                             <li class="list menu-item-parent">
-                                <a class="animation" href="{{ route('home') }}">Articles</a>
+                                <a class="animation" href="{{ route('blogs') }}">Articles</a>
                             </li>
                             <li class="list menu-item-parent">
-                                <a class="animation" href="{{ route('home') }}">Contact us</a>
+                                <a class="animation" href="{{ route('connect') }}">Contact us</a>
                             </li>
                         </ul>
                     </nav>
@@ -305,6 +316,8 @@
                                 </ul>
                             </div>
                         </div>
+
+                        
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
                         <div class="footer-link footer-link-style-2">
@@ -360,6 +373,7 @@
             </div>
         </div>
 
+        
     </footer>
         
         <!-- start back to top -->
@@ -369,16 +383,51 @@
         <!-- End back to top -->
 
         <!-- Video Popup -->
-        <div id="video-popup" class="video-popup shadow-lg">
+        {{-- <div id="video-popup" class="video-popup shadow-lg">
             <div class="video-header">
-                {{-- <span>🎥 Watch Our Story</span> --}}
                 <button id="close-video" class="btn-close text-white" style="color: #fff"></button>
             </div>
             <video id="promoVideo" width="300" height="170" playsinline autoplay muted controls>
                 <source src="{{ asset('videos/promo.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-        </div>
+        </div> --}}
+<!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/256703537196"
+    class="whatsapp-float"
+    target="_blank"
+    aria-label="Direct Chat on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            alt="WhatsApp"
+            class="whatsapp-icon">
+    </a>
+
+    <style>
+    .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        left: 20px; /* 👈 moved to left */
+        width: 60px;
+        height: 60px;
+        background-color: #25D366;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+    }
+
+    .whatsapp-icon {
+        width: 35px;
+        height: 35px;
+    }
+    </style>
 
 
     </div>
