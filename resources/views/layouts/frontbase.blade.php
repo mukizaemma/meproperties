@@ -3,14 +3,14 @@
 <base href="/public">
 <head>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18216229539"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4PD9WMPB3B"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'AW-18216229539');
+  gtag('config', 'G-4PD9WMPB3B');
 </script>
 
     <meta charset="utf-8">
