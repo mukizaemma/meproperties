@@ -17,46 +17,68 @@
   if (contactForm.length) {
     contactForm.validator().on("submit", function (e) {
       var $this = $(this),
-        $target = contactForm.find(".form-response");
+        $target = $this.find(".form-response");
       if (e.isDefaultPrevented()) {
         $target.html(
-          "<div class='alert alert-danger'><p>Please select all required field.</p></div>"
+          "<div class='alert alert-danger'><p>Please fill in all required fields.</p></div>"
         );
       } else {
+        var csrfToken =
+          $('meta[name="csrf-token"]').attr("content") ||
+          $this.find('input[name="_token"]').val();
+        var submitUrl = $this.attr("action") || "/sendMessage";
+
         $.ajax({
-          url: "php/form-process.php",
+          url: submitUrl,
           type: "POST",
-          data: contactForm.serialize(),
+          data: $this.serialize(),
+          dataType: "json",
+          headers: {
+            "X-CSRF-TOKEN": csrfToken,
+            Accept: "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
           beforeSend: function () {
             $target.html(
-              "<div class='alert alert-info'><p>Loading ...</p></div>"
+              "<div class='alert alert-info'><p>Sending your message...</p></div>"
             );
           },
-          success: function (response) {
-            var res = JSON.parse(response);
-            console.log(res);
+          success: function (res) {
             if (res.success) {
               $this[0].reset();
+              var alertClass = res.email_sent
+                ? "alert-success"
+                : "alert-warning";
               $target.html(
-                "<div class='alert alert-success'><p>Message has been sent successfully.</p></div>"
+                "<div class='alert " +
+                  alertClass +
+                  "'><p>" +
+                  (res.message ||
+                    "Your message has been submitted successfully.") +
+                  "</p></div>"
               );
             } else {
-              if (res.message.length) {
-                var messages = null;
-                res.message.forEach(function (message) {
-                  messages += "<p>" + message + "</p>";
-                });
-                $target.html(
-                  "<div class='alert alert-success'><p>" +
-                    messages +
-                    "</p></div>"
-                );
-              }
+              $target.html(
+                "<div class='alert alert-danger'><p>" +
+                  (res.message || "Unable to submit your message.") +
+                  "</p></div>"
+              );
             }
           },
-          error: function () {
+          error: function (xhr) {
+            var errorMessage = "Unable to submit your message. Please try again.";
+            if (xhr.responseJSON) {
+              if (xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+              } else if (xhr.responseJSON.errors) {
+                var firstErrors = Object.values(xhr.responseJSON.errors);
+                if (firstErrors.length && firstErrors[0].length) {
+                  errorMessage = firstErrors[0][0];
+                }
+              }
+            }
             $target.html(
-              "<div class='alert alert-success'><p>Error !!!</p></div>"
+              "<div class='alert alert-danger'><p>" + errorMessage + "</p></div>"
             );
           },
         });

@@ -219,25 +219,29 @@
                     </div>
                     <ul class="wid-contact-button">
                       <li>
-                        <a href="#"
+                        <a href="https://wa.me/{{ $setting->whatsappNumber() }}"
+                          target="_blank"
+                          rel="noopener"
                           ><i class="fas fa-comment"></i>Quick Chat</a
                         >
                       </li>
                       <li>
-                        <a href="contact.html"
-                          ><i class="fas fa-share-alt"></i>Share</a
+                        <a href="{{ route('connect') }}"
+                          ><i class="fas fa-share-alt"></i>Contact</a
                         >
                       </li>
                     </ul>
-                    <form class="contact-box rt-contact-form">
+                    <form class="contact-box rt-contact-form" action="{{ route('sendMessage') }}" method="POST">
+                      @csrf
+                      <input type="hidden" name="subject" value="Product Inquiry">
                       <div class="row">
                         <div class="form-group col-lg-12">
                           <input
                             type="text"
                             class="form-control"
-                            name="fname"
-                            placeholder="Your Full Name"
-                            data-error="First Name is required"
+                            name="names"
+                            placeholder="Your full name"
+                            data-error="Full name is required"
                             required
                           />
                         </div>
@@ -246,30 +250,30 @@
                             type="text"
                             class="form-control"
                             name="phone"
-                            placeholder="Phone"
+                            placeholder="Your phone number"
                             data-error="Phone is required"
                             required
                           />
                         </div>
                         <div class="form-group col-lg-12">
                           <input
-                            type="text"
+                            type="email"
                             class="form-control"
-                            name="phone"
-                            placeholder="E-mail"
-                            data-error="Phone is required"
+                            name="email"
+                            placeholder="Your email address"
+                            data-error="Email is required"
                             required
                           />
                         </div>
                         <div class="form-group col-lg-12">
                           <textarea
-                            name="comment"
+                            name="message"
                             id="message"
                             class="form-text"
-                            placeholder="Message"
+                            placeholder="Write your message"
                             cols="30"
                             rows="4"
-                            data-error="Message Name is required"
+                            data-error="Message is required"
                             required
                           ></textarea>
                         </div>

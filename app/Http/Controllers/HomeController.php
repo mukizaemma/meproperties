@@ -18,6 +18,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 
 class HomeController extends Controller
@@ -378,18 +380,79 @@ public function properties(){
 
     public function sendMessage(Request $request) {
         $validatedData = $request->validate([
-            'names' => 'required|string',
-            'email' => 'required|email',
-            'subject' => 'required|string',
+            'names' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:50',
+            'subject' => 'nullable|string|max:255',
             'message' => 'required|string',
         ]);
-    
-        // Now create the message with the validated data
-        $message = Message::create($validatedData);  // Pass validated data
-    
-        // Mail::to("mukizaemma34@gmail.com")->send(new MessageNotification($message));
-    
-        return redirect()->back()->with('success', 'Thank you for reaching out... we will get back to you soon');
+
+        $validatedData['subject'] = $validatedData['subject'] ?: 'Website Contact Form';
+
+        $storedMessage = $validatedData['message'];
+        if (!empty($validatedData['phone'])) {
+            $storedMessage = "Phone: {$validatedData['phone']}\n\n{$storedMessage}";
+        }
+
+        $message = Message::create([
+            'names' => $validatedData['names'],
+            'email' => $validatedData['email'],
+            'subject' => $validatedData['subject'],
+            'message' => $storedMessage,
+        ]);
+
+        $emailSent = false;
+        $resendKey = config('services.resend.key');
+
+        if (!empty($resendKey)) {
+            try {
+                $setting = Setting::first();
+                $toEmail = $setting->email ?? config('mail.from.address');
+                $fromEmail = config('mail.from.address');
+                $fromName = config('mail.from.name', $setting->company ?? 'Website');
+
+                $response = Http::withToken($resendKey)
+                    ->acceptJson()
+                    ->post('https://api.resend.com/emails', [
+                        'from' => "{$fromName} <{$fromEmail}>",
+                        'to' => [$toEmail],
+                        'reply_to' => $validatedData['email'],
+                        'subject' => 'New Contact Message: ' . $validatedData['subject'],
+                        'html' => view('emails.messageNotification', [
+                            'message' => $message,
+                        ])->render(),
+                    ]);
+
+                $emailSent = $response->successful();
+
+                if (!$emailSent) {
+                    Log::warning('Resend contact email failed', [
+                        'status' => $response->status(),
+                        'body' => $response->json(),
+                    ]);
+                }
+            } catch (\Throwable $e) {
+                Log::error('Resend contact email exception: ' . $e->getMessage());
+                $emailSent = false;
+            }
+        }
+
+        $successMessage = $emailSent
+            ? 'Your message has been submitted successfully.'
+            : 'Your message has been submitted successfully, but the email notification was not sent.';
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'email_sent' => $emailSent,
+                'message' => $successMessage,
+            ]);
+        }
+
+        return redirect()->back()->with(
+            $emailSent ? 'success' : 'warning',
+            $successMessage
+        );
     }
     
     

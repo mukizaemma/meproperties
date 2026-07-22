@@ -17,6 +17,7 @@
     <title>{{ $setting->company ?? '' }} </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon Start Here -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('storage/images') . $setting->logo }}">
     <!-- Bootstrap Css Start Here -->
@@ -192,8 +193,10 @@
                         </div>
                         <div class="col-xl-2 col-lg-2 d-flex justify-content-end">
                             <div style="display:flex; justify-content:center; align-items:center;">
-                                <a href="https://wa.me/250788123456?text=Hello%20I%20am%20interested%20in%20your%20properties"
+                                @if($setting->whatsappNumber())
+                                <a href="https://wa.me/{{ $setting->whatsappNumber() }}?text={{ urlencode('Hello, I am interested in your properties') }}"
                                     target="_blank"
+                                    rel="noopener"
                                     style="
                                     display:flex;
                                     align-items:center;
@@ -219,6 +222,21 @@
                                         font-size:15px;
                                     ">{{ $setting->phone }}</span>
                                 </a>
+                                @elseif($setting->phone)
+                                <a href="tel:{{ $setting->phone }}"
+                                    style="
+                                    display:flex;
+                                    align-items:center;
+                                    background-color:#25D366;
+                                    color:white;
+                                    border-radius:50px;
+                                    padding:12px 14px;
+                                    text-decoration:none;
+                                    font-weight:600;
+                                    ">
+                                    <i class="fas fa-phone-alt" style="font-size:18px;"></i>
+                                </a>
+                                @endif
                             </div>
 
 
@@ -309,10 +327,18 @@
                             </p>
                             <div class="item-social">
                                 <ul>
-                                    <li><a href="{{ $setting->address }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="{{ $setting->linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                                    <li><a href="{{ $setting->instagram }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                                    @if($setting->facebook)
+                                    <li><a href="{{ $setting->facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a></li>
+                                    @endif
+                                    @if($setting->linkedin)
+                                    <li><a href="{{ $setting->linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a></li>
+                                    @endif
+                                    @if($setting->instagram)
+                                    <li><a href="{{ $setting->instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a></li>
+                                    @endif
+                                    @if($setting->whatsappNumber())
+                                    <li><a href="https://wa.me/{{ $setting->whatsappNumber() }}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -393,14 +419,17 @@
             </video>
         </div> --}}
 <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/256703537196"
+    @if($setting->whatsappNumber())
+    <a href="https://wa.me/{{ $setting->whatsappNumber() }}"
     class="whatsapp-float"
     target="_blank"
-    aria-label="Direct Chat on WhatsApp">
+    rel="noopener"
+    aria-label="Chat on WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
             alt="WhatsApp"
             class="whatsapp-icon">
     </a>
+    @endif
 
     <style>
     .whatsapp-float {

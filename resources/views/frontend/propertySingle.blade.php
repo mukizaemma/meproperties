@@ -254,8 +254,8 @@
                                   <i class="fas fa-phone-alt"></i>
                               </div>
                               <div>
-                                  <div style="font-size: 12px; color: #6c757d;">Call the Agent</div>
-                                  <a href="tel:{{ $property->contact }}" style="font-size: 16px; color: #02246B; font-weight: bold; text-decoration: none;">{{ $property->contact }}</a>
+                                  <div style="font-size: 12px; color: #6c757d;">Call us</div>
+                                  <a href="tel:{{ $setting->phone }}" style="font-size: 16px; color: #02246B; font-weight: bold; text-decoration: none;">{{ $setting->phone }}</a>
                               </div>
                           </div>
 
@@ -320,15 +320,17 @@
                         >
                       </li>
                     </ul> --}}
-                    <form class="contact-box rt-contact-form">
+                    <form class="contact-box rt-contact-form" action="{{ route('sendMessage') }}" method="POST">
+                      @csrf
+                      <input type="hidden" name="subject" value="Property Inquiry">
                       <div class="row">
                         <div class="form-group col-lg-12">
                           <input
                             type="text"
                             class="form-control"
-                            name="fname"
-                            placeholder="Your Full Name"
-                            data-error="First Name is required"
+                            name="names"
+                            placeholder="Your full name"
+                            data-error="Full name is required"
                             required
                           />
                         </div>
@@ -337,30 +339,30 @@
                             type="text"
                             class="form-control"
                             name="phone"
-                            placeholder="Phone"
+                            placeholder="Your phone number"
                             data-error="Phone is required"
                             required
                           />
                         </div>
                         <div class="form-group col-lg-12">
                           <input
-                            type="text"
+                            type="email"
                             class="form-control"
-                            name="phone"
-                            placeholder="E-mail"
-                            data-error="Phone is required"
+                            name="email"
+                            placeholder="Your email address"
+                            data-error="Email is required"
                             required
                           />
                         </div>
                         <div class="form-group col-lg-12">
                           <textarea
-                            name="comment"
+                            name="message"
                             id="message"
                             class="form-text"
-                            placeholder="What are you looking for?"
+                            placeholder="Write your message"
                             cols="30"
                             rows="4"
-                            data-error="Message Name is required"
+                            data-error="Message is required"
                             required
                           ></textarea>
                         </div>

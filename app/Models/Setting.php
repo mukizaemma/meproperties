@@ -26,4 +26,12 @@ class Setting extends Model
         'linkedin',
         'quote',
     ];
+
+    /**
+     * Digits-only phone for tel:/wa.me links.
+     */
+    public function whatsappNumber(): string
+    {
+        return preg_replace('/\D+/', '', (string) ($this->phone ?? ''));
+    }
 }
